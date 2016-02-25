@@ -14,7 +14,7 @@ import appexperts.alberto.com.fresco_imageloader.adapter.VinosAdapter;
 import appexperts.alberto.com.fresco_imageloader.api.IMovies;
 import appexperts.alberto.com.fresco_imageloader.api.IVinos;
 import appexperts.alberto.com.fresco_imageloader.model.Model.VinoModel.Movies.Movie;
-import appexperts.alberto.com.fresco_imageloader.model.Model.VinoModel.Vino;
+import appexperts.alberto.com.fresco_imageloader.model.Model.VinoModel.Vinos.Vino;
 import appexperts.alberto.com.fresco_imageloader.util.Constants;
 import retrofit.Callback;
 import retrofit.RestAdapter;
@@ -43,54 +43,54 @@ public class MainActivity extends AppCompatActivity {
         FlurryAgent.init(this, "YZV4JKRZ3S8WQQ2K3DRW");
         // log level brings logcat output
         //movies
-        RestAdapter restAdapter = new RestAdapter.Builder()
-                .setEndpoint(Constants.BASE_URL)
-                .setLogLevel(RestAdapter.LogLevel.FULL)
-                .build();
+//        RestAdapter restAdapter = new RestAdapter.Builder()
+//                .setEndpoint(Constants.BASE_URL)
+//                .setLogLevel(RestAdapter.LogLevel.FULL)
+//                .build();
         //vinos
         RestAdapter restAdapter1 = new RestAdapter.Builder()
                 .setEndpoint(Constants.BASE_URL1)
                 .setLogLevel(RestAdapter.LogLevel.FULL)
                 .build();
         IVinos iVinos = restAdapter1.create(IVinos.class); //vinos
-        IMovies iMovies = restAdapter.create(IMovies.class); //movies
-        iMovies.getMovies(new Callback<List<Movie>>() {
-            @Override
-            public void success(List<Movie> movies, Response response) {
-
-                dismissDialog();
-
-                Log.i("FrescoTest: ", "Item: " + movies.get(0).getTitle());
-
-                moviesAdapter = new MoviesAdapter( movies, R.layout.row_layout, getApplicationContext());
-                recyclerView.setAdapter(moviesAdapter);
-
-            }
-
-            @Override
-            public void failure(RetrofitError error) {
-
-                dismissDialog();
-
-            }
-        });
-
-//        iVinos.getVinosInfo(new Callback<List<Vino>>() {
+//        IMovies iMovies = restAdapter.create(IMovies.class); //movies
+//        iMovies.getMovies(new Callback<List<Movie>>() {
 //            @Override
-//            public void success(List<Vino> vinos, Response response) {
+//            public void success(List<Movie> movies, Response response) {
+//
 //                dismissDialog();
 //
-//                Log.i("Vinos Test: ", "Item: " + vinos.get(0).getGlossary().getTitle());
+//                Log.i("FrescoTest: ", "Item: " + movies.get(0).getTitle());
 //
-//                vinosAdapter = new VinosAdapter(vinos, R.layout.rowvino_layout, getApplicationContext());
-//                recyclerView.setAdapter(vinosAdapter);
+//                moviesAdapter = new MoviesAdapter( movies, R.layout.row_layout, getApplicationContext());
+//                recyclerView.setAdapter(moviesAdapter);
+//
 //            }
 //
 //            @Override
 //            public void failure(RetrofitError error) {
+//
 //                dismissDialog();
+//
 //            }
 //        });
+
+        iVinos.getVinosInfo(new Callback<List<Vino>>() {
+            @Override
+            public void success(List<Vino> vinos, Response response) {
+                dismissDialog();
+
+                Log.i("Vinos Test: ", "Item: " + vinos.get(0).getTitle().toString());
+
+                vinosAdapter = new VinosAdapter(vinos, R.layout.rowvino_layout, getApplicationContext());
+                recyclerView.setAdapter(vinosAdapter);
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+                dismissDialog();
+            }
+        });
 
 
     }

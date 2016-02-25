@@ -1,11 +1,11 @@
 
-package appexperts.alberto.com.fresco_imageloader.model.Model.VinoModel;
-
+package appexperts.alberto.com.fresco_imageloader.model.Model.VinoModel.Vinos;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Glossary {
+
+public class Vino {
 
     @SerializedName("title")
     @Expose

@@ -1,7 +1,8 @@
 package appexperts.alberto.com.fresco_imageloader.api;
 
 import java.util.List;
-import appexperts.alberto.com.fresco_imageloader.model.Model.VinoModel.Vino;
+
+import appexperts.alberto.com.fresco_imageloader.model.Model.VinoModel.Vinos.Vino;
 import appexperts.alberto.com.fresco_imageloader.util.Constants;
 import retrofit.Callback;
 import retrofit.http.GET;

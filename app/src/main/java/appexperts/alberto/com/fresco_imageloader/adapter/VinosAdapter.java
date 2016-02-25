@@ -14,7 +14,7 @@ import com.facebook.drawee.view.SimpleDraweeView;
 import java.util.List;
 
 import appexperts.alberto.com.fresco_imageloader.R;
-import appexperts.alberto.com.fresco_imageloader.model.Model.VinoModel.Vino;
+import appexperts.alberto.com.fresco_imageloader.model.Model.VinoModel.Vinos.Vino;
 
 /**
  * Created by alber on 25/02/2016.
@@ -27,14 +27,16 @@ public class VinosAdapter  extends RecyclerView.Adapter<VinosAdapter.ViewHolder>
     private Context mContext;
     private LayoutInflater inflater;
 
-            public VinosAdapter(List<Vino> pVinos, int rowLayout, Context context ) {
-                this.mContext = context;
-                this.vinos = pVinos;
-                inflater =  LayoutInflater.from(context);
-                this.rowLayout = rowLayout;
-            }
 
-            @Override
+
+    public VinosAdapter(List<Vino> vinos, int rowvino_layout, Context applicationContext) {
+        this.mContext = applicationContext;
+        this.vinos = vinos;
+        inflater =  LayoutInflater.from(mContext);
+        this.rowLayout = rowvino_layout;
+    }
+
+    @Override
             public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
                 View view = inflater.inflate(rowLayout, parent, false);
                 return new ViewHolder(view);
@@ -43,10 +45,10 @@ public class VinosAdapter  extends RecyclerView.Adapter<VinosAdapter.ViewHolder>
             @Override
             public void onBindViewHolder(ViewHolder holder, final int position) {
 
-//                Uri uri = Uri.parse(vinos.get(position).getGlossary1().getImage());
-//                holder.draweeView.setImageURI(uri);
-                holder.txt.setText( vinos.get(position).getGlossary().getTitle()  );
-                holder.txt2.setText( vinos.get(position).getGlossary().getAuthor()  );
+                Uri uri = Uri.parse(vinos.get(position).getImage());
+                holder.draweeView.setImageURI(uri);
+                holder.txt.setText(vinos.get(position).getTitle());
+                holder.txt2.setText( vinos.get(position).getAuthor()  );
 
                 holder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
